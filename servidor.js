@@ -16,7 +16,7 @@ app.use(
 app.use(express.json());
 
 // teste rota
-app.get("/api/saudacao", (req, res) => {
+app.get("/", (req, res) => {
     res.json({ mensagem: "Olá! Bem-vindo à API de Receitas!" });
 });
 
