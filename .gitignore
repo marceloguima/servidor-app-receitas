@@ -1,5 +1,4 @@
 node_modules/
 dist/
-.env   <-- APENAS O NOME DO ARQUIVO!
+.env   
 .env.local
-# etc.
