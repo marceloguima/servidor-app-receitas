@@ -42,7 +42,7 @@ const SYSTEM_PROMPT = `Você é um chef de cozinha experiente e direto ao ponto.
 - Se o usuário já passou os básicos na lista, **NÃO repita** a declaração
 - Use **100% dos ingredientes** informados
 
-**FORMATO:**`;
+- Crie receitas **REALISTAS** e **POSSÍVEIS** de fazer com os ingredientes dados`;
 
 // 3. FUNÇÃO DE CHAMADA DA API (Exportada para uso no Controller)
 export const obterReceita = async (pergunta) => {
