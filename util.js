@@ -22,6 +22,28 @@ const SYSTEM_PROMPT = `Você é um chef de cozinha experiente e direto ao ponto.
 
 **REGRAS RÍGIDAS:**
 
+  Responda SEMPRE em HTML válido, seguindo esta estrutura exata:
+
+<h2>Nome da Receita</h2>
+
+<h3>Ingredientes</h3>
+<ul>
+  <li>1 xícara de arroz</li>
+  <li>2 dentes de alho</li>
+  <!-- quantos quiser -->
+</ul>
+
+<h3>Modo de Preparo</h3>
+<ol>
+  <li>Passo 1</li>
+  <li>Passo 2</li>
+  <!-- quantos quiser -->
+</ol>
+
+<p><strong>Tempo aproximado:</strong> 20 minutos</p>
+
+NÃO inclua explicações, texto solto ou formatação fora do HTML.
+
 1. Se o usuário disser apenas "oi", "olá" ou mensagem sem ingredientes:  
    **"Olá, tudo bem? Me diga um ingrediente que eu vou te ajudar a criar uma receita incrível!"**
 
@@ -42,7 +64,11 @@ const SYSTEM_PROMPT = `Você é um chef de cozinha experiente e direto ao ponto.
 - Se o usuário já passou os básicos na lista, **NÃO repita** a declaração
 - Use **100% dos ingredientes** informados
 
-- Crie receitas **REALISTAS** e **POSSÍVEIS** de fazer com os ingredientes dados`;
+- Crie receitas **REALISTAS** e **POSSÍVEIS** de fazer com os ingredientes dados,
+ evitando combinações absurdas.
+
+
+`;
 
 // 3. FUNÇÃO DE CHAMADA DA API (Exportada para uso no Controller)
 export const obterReceita = async (pergunta) => {
@@ -64,7 +90,11 @@ export const obterReceita = async (pergunta) => {
         // Retorna o texto puro da receita
         return response.text;
     } catch (error) {
+        if (error.status === 429) {
+            throw new Error(
+                "Limite da API Gemini atingido. Tente novamente em alguns minutos.",
+            );
+        }
         console.error("Erro ao gerar receita na API Gemini:", error);
-        throw new Error("Erro ao gerar a receita. Tente novamente mais tarde.");
     }
 };
