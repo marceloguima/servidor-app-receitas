@@ -1,5 +1,8 @@
 import express from "express";
-import {perguntaReceita, listarReceitas} from "../controllers/receitas.controller.js";
+import {
+    perguntaReceita,
+    listarReceitas,
+} from "../src/controllers/receitas.controller.js";
 
 const router = express.Router();
 

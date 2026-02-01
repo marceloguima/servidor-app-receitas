@@ -1,12 +1,12 @@
 {
-  "name": "services",
+  "name": "servidor-app-receitas",
   "version": "1.0.0",
-  "description": "Services",
+  "description": "Servidor",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node servidor.js",
-    "dev": "nodemon servidor.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
