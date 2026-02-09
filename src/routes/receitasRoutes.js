@@ -14,6 +14,7 @@ routes.post("/receitas", ReceitaController.cadastrarReceita);
 // Atualiza receita
 routes.put("/receitas/:id", ReceitaController.atualizarReceita);
 
+// Deletar receita
 routes.delete("/receitas/:id", ReceitaController.excluirReceita);
 
 

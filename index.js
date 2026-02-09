@@ -21,12 +21,7 @@ conexao.once("open", () => {
 
 
 const app = express();
-routes(app)
 
-
-
-
-const PORT = process.env.PORT || 3001;
 
 app.use(
     cors({
@@ -35,10 +30,17 @@ app.use(
 );
 app.use(express.json());
 
+routes(app)
+
 // teste rota
 app.get("/", (req, res) => {
     res.json({ mensagem: "Olá! Bem-vindo à API de Receitas!" });
 });
+
+
+
+
+const PORT = process.env.PORT || 3001;
 
 app.use("/api/receitas", receitasRoute);
 

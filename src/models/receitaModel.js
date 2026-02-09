@@ -7,11 +7,17 @@ const receitaSchema = new mongoose.Schema(
         descricao: { type: String, required: true },
         tempoPreparo: { type: Number, required: true },
         porcoes: { type: Number, required: true },
-        ingredientes: { type: [String], required: true },
+        ingredientes: [
+            {
+                nome: { type: String, required: true },
+                unidade: { type: String },
+                quantidade: { type: String }
+            }
+        ],
         modoPreparo: { type: String, required: true },
         complexidade: {
             type: String,
-            enum: ["facil", "media", "dificil"],
+            enum: ["facil", "medio", "dificil", "nivel chef"],
             default: "facil",
         },
         categoria: { type: String, required: true },
@@ -19,7 +25,7 @@ const receitaSchema = new mongoose.Schema(
     },
     {
         timestamps: true,
-    }
+    },
 );
 
 const receita = mongoose.model("receitas", receitaSchema);
