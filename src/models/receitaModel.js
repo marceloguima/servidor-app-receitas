@@ -17,8 +17,8 @@ const receitaSchema = new mongoose.Schema(
         modoPreparo: { type: String, required: true },
         complexidade: {
             type: String,
-            enum: ["facil", "medio", "dificil", "nivel chef"],
-            default: "facil",
+            enum: ["fácil", "médio", "difícil", "nível chef"],
+            default: "fácil",
         },
         categoria: { type: String, required: true },
         imagem: { type: String },
