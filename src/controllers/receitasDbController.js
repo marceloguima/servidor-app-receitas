@@ -29,7 +29,12 @@ class ReceitaController {
 
     static async cadastrarReceita(req, res) {
         try {
-            const novaReceita = await receita.create(req.body);
+            const dadosReceita = req.body;
+            if (req.file) {
+                dadosReceita.imagem = req.file.path;
+            }
+
+            const novaReceita = await receita.create(dadosReceita);
             res.status(201).json({
                 message: "Receita cadastrada com sucesso.",
                 receita: novaReceita,

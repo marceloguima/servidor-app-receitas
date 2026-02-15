@@ -1,5 +1,6 @@
 import express from "express";
 import ReceitaController from "../controllers/receitasDbController.js"
+// import upload from "../config/uploadImagem.js";
 
 const routes = express.Router()
 
@@ -12,7 +13,7 @@ routes.get("/receitas/:id", ReceitaController.listarReceitaPorId);//Por Id
 routes.post("/receitas", ReceitaController.cadastrarReceita);
 
 // Atualiza receita
-routes.put("/receitas/:id", ReceitaController.atualizarReceita);
+routes.put("/receitas/:id",  ReceitaController.atualizarReceita);
 
 // Deletar receita
 routes.delete("/receitas/:id", ReceitaController.excluirReceita);
