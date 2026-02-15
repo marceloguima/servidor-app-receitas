@@ -1,15 +1,15 @@
-import express from "express";
-import {
-    perguntaReceita,
-    listarReceitas,
-} from "../src/controllers/receitas.controller.js";
+// import express from "express";
+// import {
+//     perguntaReceita,
+//     listarReceitas,
+// } from "../src/controllers/receitas.controller.js";
 
-const router = express.Router();
+// const router = express.Router();
 
-// Na home lista receitas/busca
-router.get("/", listarReceitas);
+// // Na home lista receitas/busca
+// router.get("/", listarReceitas);
 
-// assistente de IA, gera receitas apartir de ingredintes em uma conversa com o usuário.
-router.post("/", perguntaReceita);
+// // assistente de IA, gera receitas apartir de ingredintes em uma conversa com o usuário.
+// router.post("/", perguntaReceita);
 
-export default router;
+// export default router;

@@ -1,3 +1,4 @@
+// routes/index.js
 import express from "express";
 import receitas from "./receitasRoutes.js"
 

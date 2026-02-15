@@ -1,10 +1,24 @@
 import receita from "../models/receitaModel.js";
+import { obterReceita } from "../util.js";
 
 class ReceitaController {
     static async listarReceitas(req, res) {
         try {
-            const listaReceita = await receita.find({});
+            const q = req.query.q || "";
+
+            const filtro = q
+                ? {
+                      $or: [
+                          { titulo: { $regex: q, $options: "i" } },
+                          { categoria: { $regex: q, $options: "i" } },
+                      ],
+                  }
+                : {};
+
+            const listaReceita = await receita.find(filtro);
+
             res.status(200).json(listaReceita);
+            
         } catch (erro) {
             res.status(500).json({
                 message: `${erro.message} - Falha na requisição.`,
