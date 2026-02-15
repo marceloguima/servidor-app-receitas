@@ -2,7 +2,7 @@
 import express from "express";
 import "dotenv/config";
 import cors from "cors";
-import receitasRoute from "./routes/receita.route.js"; //alterei aqui
+import receitasRoute from "./routes/receita.route.js"; 
 
 import conectaBaseDados from "./src/config/dbConect.js";
 import routes from "./src/routes/index.js";
