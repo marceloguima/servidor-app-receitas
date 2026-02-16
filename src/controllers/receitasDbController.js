@@ -18,7 +18,7 @@ class ReceitaController {
             const listaReceita = await receita.find(filtro);
 
             res.status(200).json(listaReceita);
-            
+
         } catch (erro) {
             res.status(500).json({
                 message: `${erro.message} - Falha na requisição.`,
@@ -97,6 +97,22 @@ class ReceitaController {
             });
         }
     }
+
+static async perguntaReceita(req, res) {
+        try {
+            const { pergunta } = req.body;
+            if (!pergunta || pergunta.trim() === "") {
+                return res.status(400).json({ erro: "Por favor, forneça uma pergunta válida." });
+            }
+            const resposta = await obterReceita(pergunta);
+            res.status(200).json({ resposta });
+        } catch (error) {
+            res.status(500).json({
+                erro: "Erro ao obter a receita via IA.",
+            });
+        }
+    }
+
 }
 
 export default ReceitaController;
