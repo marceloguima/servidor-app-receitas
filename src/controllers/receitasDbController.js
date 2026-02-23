@@ -101,17 +101,26 @@ class ReceitaController {
 static async perguntaReceita(req, res) {
         try {
             const { pergunta } = req.body;
+
             if (!pergunta || pergunta.trim() === "") {
                 return res.status(400).json({ erro: "Por favor, forneça uma pergunta válida." });
             }
             const resposta = await obterReceita(pergunta);
+
             res.status(200).json({ resposta });
         } catch (error) {
             res.status(500).json({
                 erro: "Erro ao obter a receita via IA.",
             });
+
+
+            console.error("ERRO CAPTURADO NO CONTROLLER:", error);
+        
+        res.status(500).json({ erro: "Erro interno no servidor" });
         }
     }
+
+    
 
 }
 

@@ -11,7 +11,7 @@ routes.get("/receitas", ReceitaController.listarReceitas);//Todas
 routes.get("/receitas/:id", ReceitaController.listarReceitaPorId);//Por Id
 
 // Gerar receita com IA
-routes.post("/receitas/ia", ReceitaController.perguntaReceita);
+routes.post("/ia", ReceitaController.perguntaReceita);
 
 // Cadastrar receita
 routes.post("/receitas", ReceitaController.cadastrarReceita);
