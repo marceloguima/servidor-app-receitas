@@ -1,7 +1,8 @@
 // routes/receitasRoutes.js
 import express from "express";
 import ReceitaController from "../controllers/receitasDbController.js"
-// import upload from "../config/uploadImagem.js";
+import UsuariosController from "../controllers/usuariosController.js"
+
 
 const routes = express.Router()
 
@@ -22,6 +23,9 @@ routes.put("/receitas/:id",  ReceitaController.atualizarReceita);
 // Deletar receita
 routes.delete("/receitas/:id", ReceitaController.excluirReceita);
 
+
+//Cadastra usuario
+routes.post("/usuarios", UsuariosController.cadastrarUsuario);
 
 
 
