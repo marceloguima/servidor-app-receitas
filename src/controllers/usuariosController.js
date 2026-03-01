@@ -32,30 +32,29 @@ class usuariosController {
     static async logarUsuario(req, res) {
         try {
             const { email, senha } = req.body;
-
             // verifica se o usuario existe
             const usuarioEncontrado = await usuarios.findOne({
-                email: email,
+                email: email
             });
-
+            
             if (!usuarioEncontrado) {
                 return res.status(404).json({
                     mensagem:
-                        "Email não encontrado. Crie uma conta agora, é simples e fácil!",
+                    "Email não encontrado. Crie uma conta agora, é simples!",
                 });
             }
-
+            
             // veriifica senha
             if (usuarioEncontrado.senha !== senha) {
                 return res.status(401).json({
                     mensagem: "Senha incorreta. Tente novamente.",
                 });
             }
-
+            
             // se passou libera
             res.status(200).json({
                 mensagem: `Bem-vindo ${usuarioEncontrado.nome}!`,
-
+                
                 // retorna o usuário "sem senha" por questões de segurança.
                 usuario: {
                     id: usuarioEncontrado._id,
