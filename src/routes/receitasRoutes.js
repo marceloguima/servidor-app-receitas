@@ -25,7 +25,7 @@ routes.delete("/receitas/:id", ReceitaController.excluirReceita);
 
 
 //Cadastra usuario
-routes.post("/usuarios", UsuariosController.cadastrarUsuario);
+routes.post("/usuarios/cadastro", UsuariosController.cadastrarUsuario);
 
 // loga usuario
 routes.post("/usuarios/login", UsuariosController.logarUsuario);
