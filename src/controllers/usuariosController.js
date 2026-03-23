@@ -1,4 +1,5 @@
 import usuarios from "../models/usuariosModel.js";
+import bcrypt from "bcrypt";
 
 class usuariosController {
     static async cadastrarUsuario(req, res) {
@@ -16,10 +17,27 @@ class usuariosController {
                 });
             }
 
-            const novoUsuario = await usuarios.create(dadosUsuario);
+            // criptografar senha
+            const salt = await bcrypt.genSalt(10);
+
+            const senhaHasheada = await bcrypt.hash(dadosUsuario.senha, salt);
+
+            const usuarioParaSalvar = {
+                nome: dadosUsuario.nome,
+                email: dadosUsuario.email,
+                senha: senhaHasheada, // <-- Senha blindada!
+            };
+
+            const novoUsuario = await usuarios.create(usuarioParaSalvar);
+
+            // Retornamos sucesso (repare que não devolvemos a senha pro Front)
             res.status(201).json({
                 message: "Usuario cadastrado com sucesso.",
-                usuario: novoUsuario,
+                usuario: {
+                    id: novoUsuario._id,
+                    nome: novoUsuario.nome,
+                    email: novoUsuario.email,
+                },
             });
         } catch (erro) {
             res.status(500).json({
@@ -34,28 +52,31 @@ class usuariosController {
             const { email, senha } = req.body;
             // verifica se o usuario existe
             const usuarioEncontrado = await usuarios.findOne({
-                email: email
+                email: email,
             });
-            
+
             if (!usuarioEncontrado) {
                 return res.status(404).json({
                     mensagem:
-                    "Email não encontrado. Crie uma conta agora, é simples!",
+                        "Email não encontrado. Crie uma conta agora, é simples!",
                 });
             }
-            
-            // veriifica senha
-            if (usuarioEncontrado.senha !== senha) {
+
+            // e compara com o Hash que tá salvo lá no banco de dados.
+            const senhaCorreta = await bcrypt.compare(
+                senha,
+                usuarioEncontrado.senha,
+            );
+
+            if (!senhaCorreta) {
                 return res.status(401).json({
                     mensagem: "Senha incorreta. Tente novamente.",
                 });
             }
-            
-            // se passou libera
+
+            // Se passou, libera!
             res.status(200).json({
                 mensagem: `Bem-vindo ${usuarioEncontrado.nome}!`,
-                
-                // retorna o usuário "sem senha" por questões de segurança.
                 usuario: {
                     id: usuarioEncontrado._id,
                     nome: usuarioEncontrado.nome,
