@@ -293,7 +293,7 @@ class usuariosController {
                 expiracaoTokenRecuperacao: expiracaoToken,
             });
 
-            const linkDeRecuperacao = `${process.env.VITE_API_URL}/recuperar-conta/${tokenRecuperacao}`;
+            const linkDeRecuperacao = `${process.env.FRONTEND_URL}/redefinir-senha/${tokenRecuperacao}`;
 
             // Credenciais carregadas exclusivamente do .env — evita hardcoding e facilita mudanças sem deploy.
             const transport = nodemailer.createTransport({
