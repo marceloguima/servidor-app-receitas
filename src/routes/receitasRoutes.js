@@ -30,6 +30,9 @@ routes.post("/usuarios/cadastro", UsuariosController.cadastrarUsuario);
 // loga usuario
 routes.post("/usuarios/login", UsuariosController.logarUsuario);
 
+// Recupera conta
+routes.post("/usuarios/recuperarConta", UsuariosController.recuperarConta);
+
 
 
 export default routes;
