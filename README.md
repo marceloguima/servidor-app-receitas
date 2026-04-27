@@ -67,7 +67,7 @@ npm install
 Crie um arquivo `.env` na raiz do projeto e preencha com as suas credenciais baseando-se neste formato:
 ```env
 PORT=3001
-GEMINI_KEY=AIzaSyBhm8bIWCCvqQhCslv5AV-5gR7N6AnEWCo
+GEMINI_KEY=sua_chave_api_do_google_ai_studio_aqui
 MONGO_URI=seu_link_de_conexao_do_mongodb
 MAILTRAP_USER=seu_usuario_mailtrap
 MAILTRAP_PASS=sua_senha_mailtrap
